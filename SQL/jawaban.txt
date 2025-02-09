@@ -1,0 +1,39 @@
+SOAL 1:
+create DATABASE myshop;
+
+SOAL 2:
+Table Users:
+create table users ( id int auto_increment primary key, name varchar(255) not null, email varchar(255) not null, password varchar(255) not null );
+
+Table categories:
+create table categories ( id int AUTO_INCREMENT primary key, name varchar(255) not null );
+
+Table items:
+create table items ( id int AUTO_INCREMENT primary key, name varchar(255) not null, description varchar(255) not null, price int not null, stock int not null, category_id int not null, FOREIGN KEY (category_id) REFERENCES categories(id) );
+
+SOAL 3 :
+Table Users:
+insert into users(name, email, password) values ("John Doe","john@doe.com","john123"), ("Jane Doe","jane@doe.com","jenita123");
+
+Table categories:
+insert into categories(name) VALUES ("gadget"), ("cloth"), ("men"), ("women"), ("branded");
+
+Table Items:
+insert into items(name, description, price, stock, category_id) VALUES ("Sumsang b50","hape keren dari merek sumsang",4000000,100,1), ("Uniklooh","baju keren dari brand ternama",500000,50,2), ("IMHO Watch","jam tangan anak yang jujur banget",2000000,10,1);
+
+SOAL 4 :
+a:
+SELECT name,email FROM `users`;
+
+b:
+SELECT * FROM `items` WHERE price > 1000000;
+SELECT * FROM `items` WHERE name LIKE "unik%";
+
+c:
+SELECT items.*, categories.name as kategori from items left join categories on items.category_id = categories.id;
+
+SOAL 3 :
+update items set price = 2500000 where name like "Sumsang%";
+
+
+
