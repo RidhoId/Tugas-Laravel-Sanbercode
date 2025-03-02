@@ -5,7 +5,12 @@
         <img src={{asset('AdminLTE-3.2.0/dist/img/user2-160x160.jpg')}} class="img-circle elevation-2" alt="User Image">
       </div>
       <div class="info">
-        <a href="#" class="d-block">Alexander Pierce</a>
+        @auth
+        <a href="#" class="d-block">{{ Auth::user()->name }}</a>
+        @endauth
+        @guest
+        <a href="#" class="d-block">Guest</a>
+        @endguest
       </div>
     </div>
 
@@ -27,14 +32,30 @@
         <!-- Add icons to the links using the .nav-icon class
              with font-awesome or any other icon font library -->
         <li class="nav-item">
-          <a href="../widgets.html" class="nav-link">
-            <i class="nav-icon fas fa-tachometer-alt"></i>
+          <a href="/" class="nav-link">
+            <i class="nav-icon fas fa-home"></i>
             <p>
-              Dasboard
+              Home
             </p>
           </a>
         </li>
         <li class="nav-item">
+          <a href="/film" class="nav-link">
+            <i class="nav-icon fas fa-solid fa-film"></i>
+            <p>
+              Film
+            </p>
+          </a>
+        </li>
+        <li class="nav-item">
+          <a href="/genre" class="nav-link">
+            <i class="nav-icon fas fa-th"></i>
+            <p>
+              Genre
+            </p>
+          </a>
+        </li>
+        {{-- <li class="nav-item">
           <a href="#" class="nav-link">
             <i class="nav-icon fas fa-th"></i>
             <p>
@@ -56,7 +77,18 @@
               </a>
             </li>
           </ul>
+        </li> --}}
+        @auth
+        <li>
+          <form action="/logout" method="POST">
+          @csrf
+          <button type="submit" class="btn btn-danger btn-block">Logout</button>
+          </form>
         </li>
+        @endauth
+        @guest
+          <a href="/login" class="btn btn-info btn-block">Login</a>
+        @endguest
       </ul>
     </nav>
     <!-- /.sidebar-menu -->
